@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header {
+    min-height: 100vh;;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url(../images/banner.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 6%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; 
+    padding: 0;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.navbar ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #45a049;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.navbar ul li:hover::after {
+    width: 100%;
+}
+
+.welcome {
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.welcome h1{
+    font-size: 62px;
+}
+
+.welcome p{
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: white;
+}
+
+.welcomebtn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #4CAF50; 
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; 
+}
+.welcomebtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #45a049;
+}
+
+.features {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.offerings {
+    flex-basis: 31%;
+    background: #45a049;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px;
+    box-sizing: border-box;
+}
