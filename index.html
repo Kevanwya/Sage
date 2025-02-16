@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sage</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="js/main.js">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -17,7 +18,12 @@
         <div class="navbar">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="">Subjects</a></li>
+                <li class="dropdown">
+                    <button class="dropbtn">Create</button>
+                    <div class="dropdown-content">
+                        <a href="">Question</a>
+                    </div>
+                </li>
                 <li><a href="aboutus.html">About Us</a></li>
                 <li><a href="">Sign In</a></li>
             </ul>
@@ -33,40 +39,41 @@
 
 <!--Offers Section-->
 
-<section class="offers">
+<section id="offers">
     <h1>What We Offer</h1>
 
     <div class="features">
         <div class="offerings">
+            <a href="" class="features-link">
             <h3>Question and Answer Forum</h3>
-            <p></p>
-    </div>
+            </a>
+            <p>TEST TEXT</p>
+        </div>
 
-    <div class="features">
         <div class="offerings">
+            <a href="" class="features-link">
             <h3>Ask a question</h3>
-            <p></p>
-    </div>
+            </a>
+            <p>TEST TEXT</p>
+        </div>
 
-    <div class="features">
         <div class="offerings">
+            <a href="" class="features-link">
             <h3>Tutoring Sessions</h3>
-            <p></p>
+            </a>
+            <p>TEST TEXT</p>
+        </div>
     </div>
-</div>
+</section>
+
+
 
 </section>
 
 
 
-
     
 
-
-<!-- Footer -->
-<footer>
-    <p>&copy; 2025 Sage. All rights reserved.</p>
-</footer>
 
 </body>
 </html>
