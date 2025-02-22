@@ -5,7 +5,7 @@
 }
 
 .header {
-    min-height: 100vh;;
+    min-height: 100vh;
     width: 100%;
     background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url(../images/banner.png);
     background-position: center;
@@ -18,17 +18,15 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2% 6%;
-    position: sticky;
-    top: 0;
-    z-index: 1000; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    background-color: rgba(4,9,30,0.7);
 }
 
 .navbar {
     display: flex;
     justify-content: space-between; 
-    padding: 0;
+    padding: 10px;
 }
 
 .navbar ul {
@@ -45,17 +43,17 @@ nav {
     position: relative;
 }
 
-.navbar ul li a, .dropbtn {
-        color: #fff;
-        text-decoration: none;
-        font-size: 13px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 8px 12px;
-        display: flex; 
-        align-items: center; 
-        height: 100%; 
+.navbar ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    display: flex; 
+    align-items: center; 
+    height: 100%; 
 }
 
 .navbar ul li::after {
@@ -70,40 +68,6 @@ nav {
 
 .navbar ul li:hover::after {
     width: 100%;
-}
-
-/* Dropdown */
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #4CAF50;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
-    background-color: #45a049;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
 }
 
 .welcome {
@@ -142,10 +106,6 @@ nav {
     background-color: #45a049;
 }
 
-.features-link {
-    text-decoration: none; 
-}
-
 #offers {
     width: 80%;
     margin: auto;
@@ -173,3 +133,45 @@ nav {
     box-sizing: border-box;
 }
 
+#recent {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+#recent h1 {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+/* Footer */
+
+footer {
+    background-color: #f4f4f4; 
+    padding: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.footer-links p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.footer-links a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-text {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}

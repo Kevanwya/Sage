@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sage</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="js/main.js">
+    <script src="js/main.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -18,22 +18,19 @@
         <div class="navbar">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <button class="dropbtn">Create</button>
-                    <div class="dropdown-content">
-                        <a href="">Question</a>
-                    </div>
-                </li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="">Sign In</a></li>
+                <li><a href="question.html">Ask a Question</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="">Become a Tutor!</a></li>
+                <li><a href="login.html">Login</a></li>
             </ul>
         </div>
     </nav>
 
 <div class="welcome">
     <h1>Welcome to Sage</h1>
-    <p>Where knowledge is power</p>
-    <a href="aboutus.html" class="welcomebtn">Learn more about us</a>    
+    <p>Sage is a web-based platform designed to support students with their academics. <br> 
+    Sage aims to create a centralized hub for educational resources, fostering accessibility and improving the learning experience for Secondary school students in St. Lucia. </p>
+    <a href="question.html" class="welcomebtn">Get Started</a>    
 </div>
 </section>
 
@@ -44,36 +41,41 @@
 
     <div class="features">
         <div class="offerings">
-            <a href="" class="features-link">
             <h3>Question and Answer Forum</h3>
-            </a>
-            <p>TEST TEXT</p>
+            <p>Post academic questions and get answers from students and tutors. Browse existing discussions or contribute your own insights.</p>
         </div>
 
         <div class="offerings">
-            <a href="" class="features-link">
             <h3>Ask a question</h3>
-            </a>
-            <p>TEST TEXT</p>
+            <p>Submit detailed questions with optional file attachments. Get clear, accurate responses from knowledgeable users.</p>
         </div>
 
         <div class="offerings">
-            <a href="" class="features-link">
             <h3>Tutoring Sessions</h3>
-            </a>
-            <p>TEST TEXT</p>
+            <p>Book one-on-one tutoring sessions with experienced tutors. Schedule help for specific subjects at your convenience.</p>
         </div>
     </div>
 </section>
 
+<!--Recent Questions Section-->
 
-
+<section id="recent">
+    <h1>Recent Questions</h1>
+    
 </section>
 
-
-
+<!--Footer Section-->
     
-
+<footer>
+    <div class="footer-links">
+        <p>LINKS</p>
+        <a href="index.html">Home</a>
+        <a href="question.html">Ask a question</a>
+        <a href="forum.html">Forum</a>
+        <a href="">Become a Tutor!</a>
+    </div>
+    <p class="footer-text">&copy; 2025 Sage. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
