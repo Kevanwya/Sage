@@ -26,3 +26,12 @@ CREATE TABLE answers (
     FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    tutor VARCHAR(100) NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL
+);
