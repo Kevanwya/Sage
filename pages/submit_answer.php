@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../logic/db.php');
+include('db.php');
 include('navbar.php');
 
 

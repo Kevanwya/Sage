@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../logic/db.php';  // Include the database connection file
+require_once 'db.php';  // Include the database connection file
 
 // Check if user is logged in and is a student
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'student') {

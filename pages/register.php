@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Include database connection
-include('../logic/db.php');
+include('db.php');
 include('navbar.php');
 
 
