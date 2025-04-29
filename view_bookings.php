@@ -6,8 +6,13 @@ $result = $conn->query("SELECT * FROM bookings ORDER BY date, time");
 
 <!DOCTYPE html>
 <html>
-<head><title>View Bookings</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sage - View Bookings</title>
+</head>
 <body>
+    
 <h2>All Bookings</h2>
 
 <table border="1" cellpadding="5" cellspacing="0">

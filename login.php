@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Sage</title>
+    <title>Sage - Login</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>

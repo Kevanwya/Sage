@@ -30,11 +30,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
-<head><title>Book a Session</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sage - Book a Session</title>
+</head>
 <body>
+
 <h2>Book a Tutoring Session</h2>
-<?php if($error) echo "<p style='color:red;'>$error</p>"; ?>
-<?php if($success) echo "<p style='color:green;'>$success</p>"; ?>
+
+<?php 
+    if($error) echo "<p style='color:red;'>$error</p>"; 
+?>
+
+<?php 
+    if($success) echo "<p style='color:green;'>$success</p>";
+?>
+
 <form method="POST" action="">
     Name: <input type="text" name="name" required><br>
     Email: <input type="email" name="email" required><br>
@@ -43,5 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Time: <input type="time" name="time" required><br>
     <input type="submit" value="Book Session">
 </form>
+
 </body>
 </html>
