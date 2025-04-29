@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('../logic/db.php');
-include('navbar.php');
 
 
 if (!isset($_SESSION['user_id'])) {
@@ -27,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sage - Ask Question</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/.css">
 </head>
 <body>
     <h2>Ask a Question</h2>

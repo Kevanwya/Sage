@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 
 // Include database connection
 include('../logic/db.php');
-include('navbar.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -36,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sage - Register</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/.css">
 </head>
 <body>
     <h1>Register</h1>

@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('../logic/db.php');
-include('navbar.php');
 
 
 $query = "SELECT q.id, q.question_title, q.question_body, q.created_at, u.fullname FROM questions q JOIN users u ON q.user_id = u.id ORDER BY q.created_at DESC";
@@ -13,7 +12,7 @@ $result = $conn->query($query);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sage - Forum</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/.css">
 </head>
 <body>
     <h2>Forum</h2>

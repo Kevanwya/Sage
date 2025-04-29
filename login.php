@@ -1,8 +1,6 @@
 <?php
 session_start();
 include('../logic/db.php');
-include('navbar.php');
-
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];

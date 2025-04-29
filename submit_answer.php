@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('../logic/db.php');
-include('navbar.php');
 
 
 if (!isset($_SESSION['user_id'])) {
