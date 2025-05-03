@@ -1,17 +1,13 @@
 <?php
-//  Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 
-// Include config file
 require_once "config.php";
 
-// Determine which dashboard to show based on user type
 $user_type = $_SESSION["user_type"];
 $username = $_SESSION["username"];
 $user_id = $_SESSION["id"];
@@ -30,7 +26,7 @@ $user_id = $_SESSION["id"];
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>Sage</h2>
-                <p class="user-welcome">Welcome, <?php echo htmlspecialchars($username); ?> (St. Lucia Secondary)</p>
+                <p class="user-welcome">Welcome, <?php echo htmlspecialchars($username); ?> (Secondary School Student)</p>
             </div>
             <nav class="sidebar-nav">
                 <ul>
@@ -43,8 +39,6 @@ $user_id = $_SESSION["id"];
                     <li><a href="my_students.php"><span class="icon">👨‍🎓</span> My Students</a></li>
                     <li><a href="schedule.php"><span class="icon">📅</span> My Schedule</a></li>
                     <?php } ?>
-                    <li><a href="resources.php"><span class="icon">📚</span> Resources</a></li>
-                    <li><a href="profile.php"><span class="icon">👤</span> Profile</a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
