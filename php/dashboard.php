@@ -26,23 +26,23 @@ $user_id = $_SESSION["id"];
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>Sage</h2>
-                <p class="user-welcome">Welcome, <?php echo htmlspecialchars($username); ?> (Secondary School Student)</p>
+                <p class="user-welcome">Welcome, <?php echo htmlspecialchars($username); ?></p>
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="dashboard.php" class="active"><span class="icon">📊</span> Dashboard</a></li>
-                    <li><a href="forum.php"><span class="icon">💬</span> Q&A Forum</a></li>
+                    <li><a href="dashboard.php" class="active">Dashboard</a></li>
+                    <li><a href="forum.php">Q&A Forum</a></li>
                     <?php if($user_type == 'student') { ?>
-                    <li><a href="tutors.php"><span class="icon">👨‍🏫</span> Find Tutors</a></li>
-                    <li><a href="my_sessions.php"><span class="icon">📅</span> My Sessions</a></li>
+                    <li><a href="tutors.php">Find Tutors</a></li>
+                    <li><a href="my_sessions.php">My Sessions</a></li>
                     <?php } else { ?>
-                    <li><a href="my_students.php"><span class="icon">👨‍🎓</span> My Students</a></li>
-                    <li><a href="schedule.php"><span class="icon">📅</span> My Schedule</a></li>
+                    <li><a href="my_students.php">My Students</a></li>
+                    <li><a href="schedule.php">My Schedule</a></li>
                     <?php } ?>
                 </ul>
             </nav>
             <div class="sidebar-footer">
-                <a href="logout.php" class="logout-btn"><span class="icon">🚪</span> Logout</a>
+                <a href="logout.php" class="logout-btn">Logout</a>
             </div>
         </aside>
         
@@ -51,7 +51,6 @@ $user_id = $_SESSION["id"];
                 <h1><?php echo ($user_type == 'student' ? 'Student' : 'Tutor'); ?> Dashboard</h1>
                 <div class="header-actions">
                     <span class="user-type"><?php echo ucfirst($user_type); ?></span>
-                    <a href="notifications.php" class="notification-bell">🔔</a>
                 </div>
             </header>
             

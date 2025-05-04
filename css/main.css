@@ -118,7 +118,7 @@ img {
 header   {
   background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
   min-height: 80vh;
-  background-image: url('https://images.unsplash.com/photo-1519406596751-0a3ccc4937fe?ixid=M3w3MjUzNDh8MHwxfHNlYXJjaHwyfHxzdCUyMGx1Y2lhJTIwc2Vjb25kYXJ5JTIwc2Nob29sJTIwc3R1ZGVudHMlMjBjbGFzc3Jvb20lMjBjYXJpYmJlYW4lMjBlZHVjYXRpb258ZW58MHx8fHwxNzQ2MzA0OTk0fDA&ixlib=rb-4.0.3&fit=fillmax&w=2000');
+  background-image: url('../images/header.jpg');
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;
@@ -231,15 +231,6 @@ nav .container {
 .hero-btns {
   display: flex;
   gap: 15px;
-}
-
-.hero-image {
-  flex: 1;
-}
-
-.hero-image img {
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Features Section */
@@ -385,7 +376,7 @@ nav .container {
   color: white;
   padding: 80px 0;
   text-align: center;
-  background-image: url('https://images.unsplash.com/photo-1727994191293-f7e14cf7c75b?ixid=M3w3MjUzNDh8MHwxfHNlYXJjaHwzfHxzdCUyMGx1Y2lhJTIwZWR1Y2F0aW9uJTIwc3R1ZGVudHMlMjBjYXJpYmJlYW4lMjBsZWFybmluZyUyMHNjaG9vbHxlbnwwfHx8fDE3NDYzMDQyMjR8MA&ixlib=rb-4.0.3&fit=fillmax&w=2000');
+  background-image: url('../images/header2.jpg');
   background-size: cover;
   background-position: center;
   background-blend-mode: soft-light;

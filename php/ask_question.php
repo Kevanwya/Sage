@@ -164,7 +164,6 @@ while($row = mysqli_fetch_assoc($subject_result)) {
                 <h1>Ask a Question</h1>
                 <div class="header-actions">
                     <span class="user-type"><?php echo ucfirst($_SESSION["user_type"]); ?></span>
-                    <a href="notifications.php" class="notification-bell">🔔</a>
                 </div>
             </header>
             
