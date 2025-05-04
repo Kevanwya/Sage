@@ -1,4 +1,4 @@
-/*  Ask Question CSS */
+/*  My Sessions Page CSS */
 :root {
   --primary: #0ea5e9;
   --primary-dark: #0369a1;
@@ -154,124 +154,154 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 15px;
 }
 
-/* Question Form Container */
-.question-form-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
-}
-
-/* Alert messages */
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  grid-column: 1 / -1;
-}
-
-.alert-success {
-  color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-}
-
-/* Question Form */
-.question-form {
+/* Sessions Container */
+.sessions-container {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  padding: 30px;
+  padding: 20px;
 }
 
-.form-group {
-  margin-bottom: 25px;
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--gray-light);
+  margin-bottom: 30px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
+.tab {
+  padding: 10px 20px;
   font-weight: 500;
-  color: var(--dark);
+  color: var(--gray);
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
 }
 
-.form-control {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid var(--gray-light);
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-  resize: vertical;
+.tab:hover {
+  color: var(--primary);
 }
 
-.form-control:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+.tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
 }
 
-.is-invalid {
-  border-color: var(--danger);
+/* Sessions List */
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.invalid-feedback {
-  color: var(--danger);
-  font-size: 0.9rem;
-  margin-top: 5px;
-  display: block;
-}
-
-/* File Uploads */
-.file-input-container {
+.session-card {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 20px;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-left: 4px solid var(--primary);
 }
 
-.file-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
+.session-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.file-label {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: var(--primary-light);
-  color: var(--primary);
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s;
+.session-card.status-pending {
+  border-left-color: var(--warning);
 }
 
-.file-label:hover {
-  background-color: #bae6fd;
+.session-card.status-confirmed {
+  border-left-color: var(--success);
 }
 
-.selected-files {
-  margin-left: 15px;
-  color: var(--gray);
+.session-card.status-completed {
+  border-left-color: var(--info);
+}
+
+.session-card.status-cancelled {
+  border-left-color: var(--danger);
+  opacity: 0.8;
+}
+
+.session-date-wrapper {
+  margin-right: 20px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.session-date {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.date-day {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.date-month {
   font-size: 0.9rem;
+  text-transform: uppercase;
 }
 
-.file-help {
+.session-time {
   font-size: 0.85rem;
   color: var(--gray);
 }
 
-/* Form Buttons */
-.form-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
+.session-info {
+  flex: 1;
+}
+
+.session-subject {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.session-tutor {
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badge-pending {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.badge-confirmed {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.badge-completed {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.badge-cancelled {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.session-actions {
+  margin-left: 20px;
 }
 
 .btn {
@@ -299,45 +329,50 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--primary-dark);
 }
 
-.btn-secondary {
-  background-color: transparent;
+/* No Sessions */
+.no-sessions {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.no-sessions p {
+  margin-bottom: 20px;
   color: var(--gray);
-  border: 1px solid var(--gray-light);
-}
-
-.btn-secondary:hover {
-  background-color: var(--gray-light);
-}
-
-/* Question Tips */
-.question-tips {
-  background-color: #f0f9ff;
-  border-radius: 10px;
-  padding: 25px;
-  border-left: 4px solid var(--primary);
-}
-
-.question-tips h3 {
-  color: var(--primary-dark);
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-
-.question-tips ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-.question-tips ul li {
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  color: var(--dark);
+  font-size: 1.1rem;
 }
 
 /* Responsive Design */
 @media (max-width: 992px) {
-  .question-form-container {
-    grid-template-columns: 1fr;
+  .session-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .session-date-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .session-date {
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+  
+  .session-info {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .session-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
   }
 }
 
@@ -358,13 +393,10 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
   
-  .form-buttons {
-    flex-direction: column;
-  }
-  
-  .btn {
-    width: 100%;
-    margin-bottom: 10px;
+  .tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
   }
 }
  

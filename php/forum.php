@@ -1,27 +1,34 @@
 <?php
+//  Initialize the session
 session_start();
 
+// Check if the user is logged in, if not then redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 
+// Include config file
 require_once "config.php";
 
+// Set up pagination
 $results_per_page = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $results_per_page;
 
+// Check for search query
 $search_query = isset($_GET['search']) ? clean($conn, $_GET['search']) : '';
 $filter_subject = isset($_GET['subject']) ? clean($conn, $_GET['subject']) : '';
 $filter_status = isset($_GET['status']) ? clean($conn, $_GET['status']) : '';
 
+// Base SQL query
 $sql = "SELECT q.id, q.title, q.subject, q.content, q.created_at, q.is_resolved, 
                u.username, u.user_type, COUNT(a.id) as answer_count
         FROM questions q
         JOIN users u ON q.user_id = u.id
         LEFT JOIN answers a ON q.id = a.question_id";
 
+// Add WHERE clauses based on filters
 $where_clauses = [];
 $params = [];
 $param_types = "";

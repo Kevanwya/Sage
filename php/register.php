@@ -1,12 +1,12 @@
 <?php
-//  Include config file and email functions
+//   Include config file and email functions
 require_once "config.php";
 require_once "includes/email_functions.php";
- 
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $email = $full_name = $user_type = "";
 $username_err = $password_err = $confirm_password_err = $email_err = $full_name_err = $user_type_err = "";
+$success_msg = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -130,17 +130,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_user_type = $user_type;
             $param_full_name = $full_name;
             
-                       // Attempt to execute the prepared statement
+            // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)) {
                 // Send registration confirmation email
-                sendRegistrationEmail($email, $username, $full_name);
+                if(sendRegistrationEmail($email, $username, $full_name)) {
+                    $success_msg = "Registration successful! Please check your email for confirmation.";
+                }
                 
-                // Redirect to login page
-                header("location: login.php");
+                // Redirect to login page after a brief delay
+                header("refresh:3;url=login.php");
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
- 
 
             // Close statement
             mysqli_stmt_close($stmt);
@@ -164,6 +165,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h1>Sage</h1>
                 <p>Create an Account</p>
             </div>
+            
+            <?php if(!empty($success_msg)): ?>
+            <div class="alert alert-success" style="color: #155724; background-color: #d4edda; border-color: #c3e6cb; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 5px;">
+                <?php echo $success_msg; ?>
+            </div>
+            <?php endif; ?>
             
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">

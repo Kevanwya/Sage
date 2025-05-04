@@ -1,4 +1,4 @@
-/*  Ask Question CSS */
+/*  Availability CSS */
 :root {
   --primary: #0ea5e9;
   --primary-dark: #0369a1;
@@ -154,20 +154,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 15px;
 }
 
-/* Question Form Container */
-.question-form-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
-}
-
-/* Alert messages */
+/* Alert Messages */
 .alert {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 5px;
-  grid-column: 1 / -1;
 }
 
 .alert-success {
@@ -176,16 +168,47 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #c3e6cb;
 }
 
-/* Question Form */
-.question-form {
+/* Cards */
+.card {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   padding: 30px;
+  margin-bottom: 30px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--dark);
+}
+
+/* Availability Container */
+.availability-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* Add Availability Form */
+.availability-form {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group.half {
+  margin-bottom: 0;
 }
 
 .form-group label {
@@ -202,7 +225,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 5px;
   font-size: 1rem;
   transition: border-color 0.3s;
-  resize: vertical;
 }
 
 .form-control:focus {
@@ -222,58 +244,81 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
-/* File Uploads */
-.file-input-container {
+/* Current Availability */
+.availability-list {
   display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.availability-slot {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  background-color: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
 }
 
-.file-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
+.slot-info {
+  display: flex;
+  flex-direction: column;
 }
 
-.file-label {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: var(--primary-light);
-  color: var(--primary);
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s;
+.slot-day {
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
-.file-label:hover {
-  background-color: #bae6fd;
-}
-
-.selected-files {
-  margin-left: 15px;
+.slot-time {
   color: var(--gray);
   font-size: 0.9rem;
 }
 
-.file-help {
-  font-size: 0.85rem;
-  color: var(--gray);
-}
-
-/* Form Buttons */
-.form-buttons {
+.slot-actions {
   display: flex;
-  justify-content: flex-end;
-  gap: 15px;
+  gap: 10px;
 }
 
+.no-availability {
+  background-color: #f8fafc;
+  padding: 30px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.no-availability p {
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+
+/* Availability Tips */
+.availability-tips {
+  background-color: #f0f9ff;
+  border-radius: 10px;
+  padding: 25px;
+  border-left: 4px solid var(--primary);
+}
+
+.availability-tips h3 {
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.availability-tips ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.availability-tips ul li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+
+/* Buttons */
 .btn {
   display: inline-block;
   font-weight: 500;
@@ -299,45 +344,22 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--primary-dark);
 }
 
-.btn-secondary {
-  background-color: transparent;
-  color: var(--gray);
-  border: 1px solid var(--gray-light);
+.btn-danger {
+  color: #fff;
+  background-color: var(--danger);
+  border-color: var(--danger);
 }
 
-.btn-secondary:hover {
-  background-color: var(--gray-light);
-}
-
-/* Question Tips */
-.question-tips {
-  background-color: #f0f9ff;
-  border-radius: 10px;
-  padding: 25px;
-  border-left: 4px solid var(--primary);
-}
-
-.question-tips h3 {
-  color: var(--primary-dark);
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-
-.question-tips ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-.question-tips ul li {
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  color: var(--dark);
+.btn-danger:hover {
+  background-color: #dc2626;
+  border-color: #dc2626;
 }
 
 /* Responsive Design */
 @media (max-width: 992px) {
-  .question-form-container {
+  .form-row {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 }
 
@@ -358,13 +380,22 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
   
-  .form-buttons {
+  .availability-slot {
     flex-direction: column;
+  }
+  
+  .slot-info {
+    margin-bottom: 15px;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .slot-actions {
+    width: 100%;
   }
   
   .btn {
     width: 100%;
-    margin-bottom: 10px;
   }
 }
  

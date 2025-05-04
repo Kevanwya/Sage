@@ -1,4 +1,4 @@
-/*  Ask Question CSS */
+/*  Schedule Session CSS */
 :root {
   --primary: #0ea5e9;
   --primary-dark: #0369a1;
@@ -154,8 +154,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 15px;
 }
 
-/* Question Form Container */
-.question-form-container {
+/* Session Container */
+.session-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 30px;
@@ -176,8 +176,43 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #c3e6cb;
 }
 
-/* Question Form */
-.question-form {
+/* Tutor Info */
+.tutor-info {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.tutor-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.tutor-details h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.tutor-username {
+  color: var(--gray);
+}
+
+/* Session Form */
+.session-form {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -186,6 +221,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-group {
   margin-bottom: 25px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.form-group.half {
+  margin-bottom: 0;
 }
 
 .form-group label {
@@ -220,51 +266,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9rem;
   margin-top: 5px;
   display: block;
-}
-
-/* File Uploads */
-.file-input-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.file-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
-}
-
-.file-label {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: var(--primary-light);
-  color: var(--primary);
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s;
-}
-
-.file-label:hover {
-  background-color: #bae6fd;
-}
-
-.selected-files {
-  margin-left: 15px;
-  color: var(--gray);
-  font-size: 0.9rem;
-}
-
-.file-help {
-  font-size: 0.85rem;
-  color: var(--gray);
 }
 
 /* Form Buttons */
@@ -309,26 +310,26 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--gray-light);
 }
 
-/* Question Tips */
-.question-tips {
+/* Session Tips */
+.session-tips {
   background-color: #f0f9ff;
   border-radius: 10px;
   padding: 25px;
   border-left: 4px solid var(--primary);
 }
 
-.question-tips h3 {
+.session-tips h3 {
   color: var(--primary-dark);
   margin-bottom: 15px;
   font-size: 1.2rem;
 }
 
-.question-tips ul {
+.session-tips ul {
   list-style-type: disc;
   padding-left: 20px;
 }
 
-.question-tips ul li {
+.session-tips ul li {
   margin-bottom: 10px;
   font-size: 0.95rem;
   color: var(--dark);
@@ -336,7 +337,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-  .question-form-container {
+  .session-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
     grid-template-columns: 1fr;
   }
 }
@@ -364,7 +369,6 @@ h1, h2, h3, h4, h5, h6 {
   
   .btn {
     width: 100%;
-    margin-bottom: 10px;
   }
 }
  

@@ -64,3 +64,4 @@ CREATE TABLE IF NOT EXISTS tutoring_sessions (
     FOREIGN KEY (tutor_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE
 );
+ 

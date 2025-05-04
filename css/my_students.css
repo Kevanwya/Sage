@@ -1,4 +1,4 @@
-/*  Ask Question CSS */
+/*  My Students CSS */
 :root {
   --primary: #0ea5e9;
   --primary-dark: #0369a1;
@@ -154,124 +154,103 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 15px;
 }
 
-/* Question Form Container */
-.question-form-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
-}
-
-/* Alert messages */
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  grid-column: 1 / -1;
-}
-
-.alert-success {
-  color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-}
-
-/* Question Form */
-.question-form {
+/* Students Container */
+.students-container {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   padding: 30px;
 }
 
-.form-group {
-  margin-bottom: 25px;
+.students-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
+.students-header h2 {
+  font-size: 1.5rem;
   color: var(--dark);
 }
 
-.form-control {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid var(--gray-light);
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-  resize: vertical;
+.student-count {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
-.form-control:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+/* Students Grid */
+.students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
 }
 
-.is-invalid {
-  border-color: var(--danger);
+.student-card {
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
-.invalid-feedback {
-  color: var(--danger);
-  font-size: 0.9rem;
-  margin-top: 5px;
-  display: block;
+.student-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* File Uploads */
-.file-input-container {
+.student-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: var(--primary);
+  color: white;
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 auto 15px;
+}
+
+.student-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.student-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.student-username {
+  color: var(--gray);
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.student-email {
+  color: var(--gray);
+  font-size: 0.9rem;
   margin-bottom: 10px;
 }
 
-.file-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
-}
-
-.file-label {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: var(--primary-light);
-  color: var(--primary);
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s;
-}
-
-.file-label:hover {
-  background-color: #bae6fd;
-}
-
-.selected-files {
-  margin-left: 15px;
-  color: var(--gray);
-  font-size: 0.9rem;
-}
-
-.file-help {
-  font-size: 0.85rem;
-  color: var(--gray);
-}
-
-/* Form Buttons */
-.form-buttons {
+.student-stats {
   display: flex;
-  justify-content: flex-end;
-  gap: 15px;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.student-actions {
+  margin-top: auto;
 }
 
 .btn {
@@ -286,6 +265,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 5px;
   transition: all 0.15s ease-in-out;
   cursor: pointer;
+  width: 100%;
 }
 
 .btn-primary {
@@ -299,48 +279,19 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--primary-dark);
 }
 
-.btn-secondary {
-  background-color: transparent;
+/* No Students */
+.no-students {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.no-students p {
   color: var(--gray);
-  border: 1px solid var(--gray-light);
-}
-
-.btn-secondary:hover {
-  background-color: var(--gray-light);
-}
-
-/* Question Tips */
-.question-tips {
-  background-color: #f0f9ff;
-  border-radius: 10px;
-  padding: 25px;
-  border-left: 4px solid var(--primary);
-}
-
-.question-tips h3 {
-  color: var(--primary-dark);
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-
-.question-tips ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-.question-tips ul li {
   margin-bottom: 10px;
-  font-size: 0.95rem;
-  color: var(--dark);
+  font-size: 1.1rem;
 }
 
 /* Responsive Design */
-@media (max-width: 992px) {
-  .question-form-container {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 768px) {
   .sidebar {
     width: 0;
@@ -358,13 +309,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
   
-  .form-buttons {
-    flex-direction: column;
-  }
-  
-  .btn {
-    width: 100%;
-    margin-bottom: 10px;
+  .students-grid {
+    grid-template-columns: 1fr;
   }
 }
  

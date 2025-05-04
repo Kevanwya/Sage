@@ -1,5 +1,6 @@
 <?php
-//  Email functions for Sage education platform
+//   Email functions for Sage education platform
+require_once "email_service.php";
 
 /**
  * Send password reset email
@@ -42,13 +43,10 @@ function sendPasswordResetEmail($email, $token) {
     </html>
     ";
     
-    // Set content-type header for sending HTML email
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= 'From: Sage <noreply@sage-edu.com>' . "\r\n";
+    // Send email using the email service
+    $result = send_email($email, $subject, $message);
     
-    // Send email
-    return mail($email, $subject, $message, $headers);
+    return $result['success'];
 }
 
 /**
@@ -99,13 +97,10 @@ function sendRegistrationEmail($email, $username, $fullName) {
     </html>
     ";
     
-    // Set content-type header for sending HTML email
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= 'From: Sage <noreply@sage-edu.com>' . "\r\n";
+    // Send email using the email service
+    $result = send_email($email, $subject, $message);
     
-    // Send email
-    return mail($email, $subject, $message, $headers);
+    return $result['success'];
 }
 
 /**
@@ -161,12 +156,9 @@ function sendSessionConfirmationEmail($session, $student, $tutor) {
     </html>
     ";
     
-    // Set content-type header for sending HTML email
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= 'From: Sage <noreply@sage-edu.com>' . "\r\n";
+    // Send email using the email service
+    $result = send_email($student['email'], $subject, $message);
     
-    // Send email
-    return mail($student['email'], $subject, $message, $headers);
+    return $result['success'];
 }
  

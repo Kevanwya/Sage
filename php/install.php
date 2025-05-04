@@ -1,11 +1,15 @@
 <?php
+//  Sage Installation and Setup Script
 
+// Check if script is running via web browser
 if (isset($_SERVER['REQUEST_METHOD'])) {
     echo "<h1>Sage Platform Installation</h1>";
 }
 
+// Create necessary folders
 include_once 'create_folders.php';
 
+// Create database if it doesn't exist
 include_once 'config.php';
 
 echo "<h2>Installation Completed!</h2>";

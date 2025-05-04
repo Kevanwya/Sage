@@ -141,21 +141,20 @@ while($row = mysqli_fetch_assoc($subject_result)) {
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="dashboard.php"><span class="icon">📊</span> Dashboard</a></li>
-                    <li><a href="forum.php" class="active"><span class="icon">💬</span> Q&A Forum</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="forum.php" class="active">Q&A Forum</a></li>
                     <?php if($_SESSION["user_type"] == 'student') { ?>
-                    <li><a href="tutors.php"><span class="icon">👨‍🏫</span> Find Tutors</a></li>
-                    <li><a href="my_sessions.php"><span class="icon">📅</span> My Sessions</a></li>
+                    <li><a href="tutors.php">Find Tutors</a></li>
+                    <li><a href="my_sessions.php">My Sessions</a></li>
                     <?php } else { ?>
-                    <li><a href="my_students.php"><span class="icon">👨‍🎓</span> My Students</a></li>
-                    <li><a href="schedule.php"><span class="icon">📅</span> My Schedule</a></li>
+                    <li><a href="my_students.php">My Students</a></li>
+                    <li><a href="schedule.php">My Schedule</a></li>
                     <?php } ?>
-                    <li><a href="resources.php"><span class="icon">📚</span> Resources</a></li>
-                    <li><a href="profile.php"><span class="icon">👤</span> Profile</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
-                <a href="logout.php" class="logout-btn"><span class="icon">🚪</span> Logout</a>
+                <a href="logout.php" class="logout-btn">Logout</a>
             </div>
         </aside>
         

@@ -1,5 +1,7 @@
 <?php
+//  This script creates necessary folders for uploads and SQL files
 
+// Define the folders to create
 $folders = [
     '../uploads',
     '../uploads/profile_images',
@@ -8,9 +10,10 @@ $folders = [
     '../sql'
 ];
 
+// Loop through each folder and create it if it doesn't exist
 foreach ($folders as $folder) {
     if (!file_exists($folder)) {
-
+        // Create the directory with permissions
         if (mkdir($folder, 0755, true)) {
             echo "Created folder: " . $folder . "<br>";
         } else {
