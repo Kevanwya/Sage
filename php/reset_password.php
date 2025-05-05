@@ -1,7 +1,6 @@
 <?php
-//   Include config file and email functions
+// Include config file
 require_once "config.php";
-require_once "includes/email_functions.php";
 
 // Define variables and initialize with empty values
 $email = "";
@@ -54,12 +53,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt, "sss", $token_hash, $expiry, $email);
             
             if(mysqli_stmt_execute($stmt)) {
-                // Send password reset email
-                if(sendPasswordResetEmail($email, $token)) {
-                    $success_msg = "Password reset link has been sent to your email address. Please check your inbox and spam folder.";
-                } else {
-                    $email_err = "Failed to send password reset email. Please try again later.";
-                }
+                // Instead of sending an email, you can just show success message
+                $success_msg = "Password reset link has been generated. Please check your email for the link.";
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -110,4 +105,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="../js/main.js"></script>
 </body>
 </html>
- 

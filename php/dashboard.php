@@ -1,17 +1,13 @@
 <?php
-//  Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 
-// Include config file
 require_once "config.php";
 
-// Determine which dashboard to show based on user type
 $user_type = $_SESSION["user_type"];
 $username = $_SESSION["username"];
 $user_id = $_SESSION["id"];
@@ -22,7 +18,7 @@ $user_id = $_SESSION["id"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Sage</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>

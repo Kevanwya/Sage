@@ -1,7 +1,6 @@
 <?php
-//   Include config file and email functions
+//   Include config file
 require_once "config.php";
-require_once "includes/email_functions.php";
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $email = $full_name = $user_type = "";
@@ -132,10 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)) {
-                // Send registration confirmation email
-                if(sendRegistrationEmail($email, $username, $full_name)) {
-                    $success_msg = "Registration successful! Please check your email for confirmation.";
-                }
+                $success_msg = "Registration successful!";
                 
                 // Redirect to login page after a brief delay
                 header("refresh:3;url=login.php");
@@ -149,6 +145,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
