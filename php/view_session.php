@@ -1,18 +1,14 @@
 <?php
-//  Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if(!isset($_SESSION["loggedin"])  || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 
-// Include config file
 require_once "config.php";
 require_once "includes/email_functions.php";
 
-// Check if session ID is provided
 if(!isset($_GET["id"]) || empty($_GET["id"])) {
     header("location: dashboard.php");
     exit;
@@ -22,7 +18,6 @@ $session_id = clean($conn, $_GET["id"]);
 $user_id = $_SESSION["id"];
 $user_type = $_SESSION["user_type"];
 
-// Get session details based on user type
 if($user_type == 'student') {
     $sql = "SELECT ts.*, 
                   u.full_name as tutor_name, 
@@ -46,7 +41,6 @@ if($user_type == 'student') {
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
-// Check if session exists and belongs to user
 if(mysqli_num_rows($result) == 0) {
     header("location: dashboard.php");
     exit;
@@ -55,7 +49,6 @@ if(mysqli_num_rows($result) == 0) {
 $session = mysqli_fetch_assoc($result);
 $page_title = "Session Details - " . $session['subject'];
 
-// Handle session status updates
 $status_message = "";
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
     $action = $_POST["action"];
@@ -69,7 +62,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
                 $status_message = "Session has been confirmed!";
                 $session['status'] = 'confirmed';
                 
-                // Get student details for email
                 $student_sql = "SELECT * FROM users WHERE id = ?";
                 $student_stmt = mysqli_prepare($conn, $student_sql);
                 mysqli_stmt_bind_param($student_stmt, "i", $session['student_id']);
@@ -77,7 +69,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
                 $student_result = mysqli_stmt_get_result($student_stmt);
                 $student = mysqli_fetch_assoc($student_result);
                 
-                // Get tutor details for email
                 $tutor_sql = "SELECT * FROM users WHERE id = ?";
                 $tutor_stmt = mysqli_prepare($conn, $tutor_sql);
                 mysqli_stmt_bind_param($tutor_stmt, "i", $session['tutor_id']);
@@ -85,7 +76,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
                 $tutor_result = mysqli_stmt_get_result($tutor_stmt);
                 $tutor = mysqli_fetch_assoc($tutor_result);
                 
-                // Send confirmation email
                 sendSessionConfirmationEmail($session, $student, $tutor);
             }
             break;
@@ -118,118 +108,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Built with jdoodle.ai - View detailed information about your tutoring session including date, time, and participant information.">
+    <meta property="og:title" content="<?php echo $page_title; ?> - Sage Learning Platform">
+    <meta property="og:description" content="Built with jdoodle.ai - View detailed information about your tutoring session including date, time, and participant information.">
+    <meta property="og:image" content="https://imagedelivery.net/FIZL8110j4px64kO6qJxWA/2fda2fd7j331cj4991ja633jdb095da46c65/public">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="<?php echo $page_title; ?> - Sage Learning Platform">
+    <meta property="twitter:description" content="Built with jdoodle.ai - View detailed information about your tutoring session including date, time, and participant information.">
+    <meta property="twitter:image" content="https://imagedelivery.net/FIZL8110j4px64kO6qJxWA/2fda2fd7j331cj4991ja633jdb095da46c65/public">
     <title><?php echo $page_title; ?> - Sage</title>
     <link rel="stylesheet" href="../css/dashboard.css">
-    <style>
-        .session-details-container {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            padding: 30px;
-        }
-        
-        .session-status {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        
-        .status-pending {
-            background-color: #fef3c7;
-            color: #d97706;
-        }
-        
-        .status-confirmed {
-            background-color: #dcfce7;
-            color: #16a34a;
-        }
-        
-        .status-completed {
-            background-color: #e0f2fe;
-            color: #0369a1;
-        }
-        
-        .status-cancelled {
-            background-color: #fee2e2;
-            color: #dc2626;
-        }
-        
-        .session-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .session-title {
-            font-size: 1.8rem;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-        
-        .session-meta {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .session-info {
-            background-color: #f8fafc;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .info-item {
-            margin-bottom: 15px;
-        }
-        
-        .info-label {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-        
-        .info-value {
-            color: var(--gray);
-        }
-        
-        .session-description {
-            margin-bottom: 30px;
-        }
-        
-        .description-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .session-actions {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .alert {
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        
-        .alert-success {
-            background-color: #dcfce7;
-            color: #16a34a;
-            border: 1px solid #86efac;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/view_session.css">
 </head>
 <body>
     <div class="dashboard">

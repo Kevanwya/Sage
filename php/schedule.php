@@ -1,27 +1,21 @@
 <?php
-//  Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if(!isset($_SESSION["loggedin"])  || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 
-// Check if user is a tutor
 if($_SESSION["user_type"] !== "tutor") {
     header("location: dashboard.php");
     exit;
 }
 
-// Include config file
 require_once "config.php";
 
-// Define variables
 $user_id = $_SESSION["id"];
 $active_tab = isset($_GET['tab']) ? clean($conn, $_GET['tab']) : 'upcoming';
 
-// Get sessions based on active tab
 $sql = "SELECT ts.*, u.full_name as student_name, u.email as student_email 
         FROM tutoring_sessions ts 
         JOIN users u ON ts.student_id = u.id 
@@ -47,7 +41,6 @@ while($row = mysqli_fetch_assoc($result)) {
     $sessions[] = $row;
 }
 
-// Get availability
 $availability_sql = "SELECT * FROM tutor_availability WHERE tutor_id = ? ORDER BY 
                     CASE day_of_week 
                         WHEN 'Monday' THEN 1 

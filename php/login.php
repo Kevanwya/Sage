@@ -92,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sage</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
@@ -123,8 +123,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
-                <p class="forgot-password"><a href="reset_password.php">Forgot Password?</a></p>
-                <p class="register-link">Don't have an account? <a href="register.php">Register now</a></p>
+                <p class="register-link">Don't have an account? <a href="register.php">Register Now</a></p>
             </form>
         </div>
     </div>

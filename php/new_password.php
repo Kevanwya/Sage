@@ -1,19 +1,15 @@
 <?php
-//  Include config file
-require_once "config.php";
+require_once  "config.php";
 
-// Define variables and initialize with empty values
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = $token_err = "";
 
-// Check if token is set in URL
 if(!isset($_GET["token"]) || empty(trim($_GET["token"]))) {
     $token_err = "Invalid password reset link.";
 } else {
     $token = $_GET["token"];
     $token_hash = hash('sha256', $token);
     
-    // Check if token exists and is not expired
     $sql = "SELECT id FROM users WHERE reset_token = ? AND reset_token_expiry > NOW()";
     
     if($stmt = mysqli_prepare($conn, $sql)) {
@@ -33,10 +29,8 @@ if(!isset($_GET["token"]) || empty(trim($_GET["token"]))) {
     }
 }
 
-// Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST" && empty($token_err)) {
     
-    // Validate new password
     if(empty(trim($_POST["new_password"]))) {
         $new_password_err = "Please enter the new password.";     
     } elseif(strlen(trim($_POST["new_password"])) < 6) {
@@ -45,7 +39,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && empty($token_err)) {
         $new_password = trim($_POST["new_password"]);
     }
     
-    // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))) {
         $confirm_password_err = "Please confirm the password.";
     } else {
@@ -55,28 +48,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && empty($token_err)) {
         }
     }
     
-    // Check input errors before updating the password
     if(empty($new_password_err) && empty($confirm_password_err)) {
-        // Prepare an update statement
         $sql = "UPDATE users SET password = ?, reset_token = NULL, reset_token_expiry = NULL WHERE reset_token = ?";
         
         if($stmt = mysqli_prepare($conn, $sql)) {
-            // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_password, $token_hash);
             
-            // Set parameters
             $param_password = password_hash($new_password, PASSWORD_DEFAULT);
             
-            // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)) {
-                // Password updated successfully. Redirect to login page
                 header("location: login.php");
                 exit();
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
             mysqli_stmt_close($stmt);
         }
     }
@@ -88,6 +74,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && empty($token_err)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Built with jdoodle.ai - Create a new password for your Sage account. Reset your password securely.">
+    <meta property="og:title" content="New Password - Sage Learning Platform">
+    <meta property="og:description" content="Built with jdoodle.ai - Create a new password for your Sage account. Reset your password securely.">
+    <meta property="og:image" content="https://imagedelivery.net/FIZL8110j4px64kO6qJxWA/2fda2fd7j331cj4991ja633jdb095da46c65/public">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="New Password - Sage Learning Platform">
+    <meta property="twitter:description" content="Built with jdoodle.ai - Create a new password for your Sage account. Reset your password securely.">
+    <meta property="twitter:image" content="https://imagedelivery.net/FIZL8110j4px64kO6qJxWA/2fda2fd7j331cj4991ja633jdb095da46c65/public">
     <title>New Password - Sage</title>
     <link rel="stylesheet" href="../css/new_password.css">
 </head>

@@ -157,15 +157,15 @@ while($row = mysqli_fetch_assoc($subject_result)) {
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="forum.php">Q&A Forum</a></li>
-                    <li><a href="tutors.php" class="active">Find Tutors</a></li>
-                    <li><a href="my_sessions.php">My Sessions</a></li>
-                    <li><a href="profile.php">Profile</a></li>
+                    <li><a href="dashboard.php"><span class="icon">📊</span> Dashboard</a></li>
+                    <li><a href="forum.php"><span class="icon">💬</span> Q&A Forum</a></li>
+                    <li><a href="tutors.php" class="active"><span class="icon">👨‍🏫</span> Find Tutors</a></li>
+                    <li><a href="my_sessions.php"><span class="icon">📅</span> My Sessions</a></li>
+                    <li><a href="profile.php"><span class="icon">👤</span> Profile</a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
-                <a href="logout.php" class="logout-btn">Logout</a>
+                <a href="logout.php" class="logout-btn"><span class="icon">🚪</span> Logout</a>
             </div>
         </aside>
         
