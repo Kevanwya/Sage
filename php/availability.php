@@ -121,7 +121,7 @@ while($row = mysqli_fetch_assoc($availability_result)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Availability - Sage</title>
+    <title>Availability</title>
     <link rel="stylesheet" href="../css/availability.css">
 </head>
 <body>
@@ -135,8 +135,8 @@ while($row = mysqli_fetch_assoc($availability_result)) {
                 <ul>
                     <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="forum.php">Q&A Forum</a></li>
-                    <li><a href="my_students.php">My Students</a></li>
-                    <li><a href="schedule.php">My Schedule</a></li>
+                    <li><a href="my_students.php">Students</a></li>
+                    <li><a href="schedule.php">Schedule</a></li>
                     <li><a href="availability.php" class="active">Set Availability</a></li>
                     <li><a href="profile.php">Profile</a></li>
                 </ul>

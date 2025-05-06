@@ -106,7 +106,7 @@ while($row = mysqli_fetch_assoc($result)) {
                     <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="forum.php">Q&A Forum</a></li>
                     <li><a href="tutors.php" class="active">Find Tutors</a></li>
-                    <li><a href="my_sessions.php">My Sessions</a></li>
+                    <li><a href="my_sessions.php">Sessions</a></li>
                     <li><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>

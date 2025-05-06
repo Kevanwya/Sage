@@ -1,13 +1,17 @@
 <?php
+//  Initialize the session
 session_start();
 
+// Check if the user is logged in, if not then redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 
+// Include config file
 require_once "config.php";
 
+// Determine which dashboard to show based on user type
 $user_type = $_SESSION["user_type"];
 $username = $_SESSION["username"];
 $user_id = $_SESSION["id"];
@@ -34,10 +38,10 @@ $user_id = $_SESSION["id"];
                     <li><a href="forum.php">Q&A Forum</a></li>
                     <?php if($user_type == 'student') { ?>
                     <li><a href="tutors.php">Find Tutors</a></li>
-                    <li><a href="my_sessions.php">My Sessions</a></li>
+                    <li><a href="my_sessions.php">Sessions</a></li>
                     <?php } else { ?>
-                    <li><a href="my_students.php">My Students</a></li>
-                    <li><a href="schedule.php">My Schedule</a></li>
+                    <li><a href="my_students.php">Students</a></li>
+                    <li><a href="schedule.php">Schedule</a></li>
                     <?php } ?>
                     <li><a href="profile.php">Profile</a></li>
                 </ul>

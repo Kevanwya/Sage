@@ -102,6 +102,11 @@ h1, h2, h3, h4, h5, h6 {
   border-left: 3px solid var(--primary);
 }
 
+.sidebar-nav .icon {
+  margin-right: 12px;
+  font-size: 1.1rem;
+}
+
 .sidebar-footer {
   padding: 20px;
   border-top: 1px solid var(--gray-light);
@@ -152,6 +157,16 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.85rem;
   font-weight: 600;
   margin-right: 15px;
+}
+
+.notification-bell {
+  font-size: 1.2rem;
+  color: var(--gray);
+  transition: color 0.3s;
+}
+
+.notification-bell:hover {
+  color: var(--primary);
 }
 
 /* Dashboard Content */

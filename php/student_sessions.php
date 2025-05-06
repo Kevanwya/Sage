@@ -89,8 +89,8 @@ $stats = mysqli_fetch_assoc($stats_result);
                 <ul>
                     <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="forum.php">Q&A Forum</a></li>
-                    <li><a href="my_students.php" class="active">My Students</a></li>
-                    <li><a href="schedule.php">My Schedule</a></li>
+                    <li><a href="my_students.php" class="active">Students</a></li>
+                    <li><a href="schedule.php">Schedule</a></li>
                     <li><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>

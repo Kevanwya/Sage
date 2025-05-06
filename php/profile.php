@@ -1,4 +1,5 @@
 <?php
+//  Initialize the session
 session_start();
 
 // Check if the user is logged in, if not then redirect to login page
@@ -163,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["change_password"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile - Sage</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="../css/profile.css">
 </head>
 <body>
@@ -179,16 +180,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["change_password"])) {
                     <li><a href="forum.php">Q&A Forum</a></li>
                     <?php if($_SESSION["user_type"] == 'student') { ?>
                     <li><a href="tutors.php">Find Tutors</a></li>
-                    <li><a href="my_sessions.php">My Sessions</a></li>
+                    <li><a href="my_sessions.php">Sessions</a></li>
                     <?php } else { ?>
-                    <li><a href="my_students.php">My Students</a></li>
-                    <li><a href="schedule.php">My Schedule</a></li>
+                    <li><a href="my_students.php">Students</a></li>
+                    <li><a href="schedule.php">Schedule</a></li>
                     <?php } ?>
                     <li><a href="profile.php" class="active">Profile</a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
-                <a href="logout.php" class="logout-btn"></span> Logout</a>
+                <a href="logout.php" class="logout-btn">Logout</a>
             </div>
         </aside>
         
@@ -231,6 +232,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["change_password"])) {
                             <div class="form-group">
                                 <label>Full Name</label>
                                 <input type="text" class="form-control" value="<?php echo htmlspecialchars($user['full_name']); ?>" disabled>
+                                <span class="form-help">Full Name cannot be changed</span>
                             </div>
                             
                             <div class="form-group">
@@ -248,6 +250,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["change_password"])) {
                             <div class="form-group">
                                 <label>User Type</label>
                                 <input type="text" class="form-control" value="<?php echo ucfirst($user['user_type']); ?>" disabled>
+                                <span class="form-help">Account Type cannot be changed</span>
                             </div>
                             
                             <div class="form-group">

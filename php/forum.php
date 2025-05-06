@@ -102,7 +102,7 @@ $subject_result = mysqli_query($conn, $subject_sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q&A Forum - Sage</title>
+    <title>Q&A Forum</title>
     <link rel="stylesheet" href="../css/forum.css">
 </head>
 <body>
@@ -118,10 +118,10 @@ $subject_result = mysqli_query($conn, $subject_sql);
                     <li><a href="forum.php" class="active">Q&A Forum</a></li>
                     <?php if($_SESSION["user_type"] == 'student') { ?>
                     <li><a href="tutors.php">Find Tutors</a></li>
-                    <li><a href="my_sessions.php">My Sessions</a></li>
+                    <li><a href="my_sessions.php">Sessions</a></li>
                     <?php } else { ?>
-                    <li><a href="my_students.php">My Students</a></li>
-                    <li><a href="schedule.php">My Schedule</a></li>
+                    <li><a href="my_students.php">Students</a></li>
+                    <li><a href="schedule.php">Schedule</a></li>
                     <?php } ?>
                     <li><a href="profile.php">Profile</a></li>
                 </ul>

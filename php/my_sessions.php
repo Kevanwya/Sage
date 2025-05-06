@@ -53,7 +53,7 @@ while($row = mysqli_fetch_assoc($result)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Sessions - Sage</title>
+    <title>Sessions</title>
     <link rel="stylesheet" href="../css/my_sessions.css">
 </head>
 <body>
@@ -68,7 +68,7 @@ while($row = mysqli_fetch_assoc($result)) {
                     <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="forum.php">Q&A Forum</a></li>
                     <li><a href="tutors.php">Find Tutors</a></li>
-                    <li><a href="my_sessions.php" class="active">My Sessions</a></li>
+                    <li><a href="my_sessions.php" class="active">Sessions</a></li>
                     <li><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>

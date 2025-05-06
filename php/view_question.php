@@ -1,13 +1,17 @@
 <?php
+//  Initialize the session
 session_start();
 
-if(!isset($_SESSION["loggedin"])  || $_SESSION["loggedin"] !== true) {
+// Check if the user is logged in, if not then redirect to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 
+// Include config file
 require_once "config.php";
 
+// Check if question ID is provided
 if(!isset($_GET["id"]) || empty($_GET["id"])) {
     header("location: forum.php");
     exit;
@@ -17,6 +21,7 @@ $question_id = clean($conn, $_GET["id"]);
 $user_id = $_SESSION["id"];
 $user_type = $_SESSION["user_type"];
 
+// Get question details
 $question_sql = "SELECT q.*, u.username, u.user_type, u.full_name
                 FROM questions q
                 JOIN users u ON q.user_id = u.id
@@ -27,6 +32,7 @@ mysqli_stmt_bind_param($question_stmt, "i", $question_id);
 mysqli_stmt_execute($question_stmt);
 $question_result = mysqli_stmt_get_result($question_stmt);
 
+// Check if question exists
 if(mysqli_num_rows($question_result) == 0) {
     header("location: forum.php");
     exit;
@@ -34,6 +40,7 @@ if(mysqli_num_rows($question_result) == 0) {
 
 $question = mysqli_fetch_assoc($question_result);
 
+// Get answers for the question
 $answers_sql = "SELECT a.*, u.username, u.user_type, u.full_name
                FROM answers a
                JOIN users u ON a.user_id = u.id
@@ -45,18 +52,21 @@ mysqli_stmt_bind_param($answers_stmt, "i", $question_id);
 mysqli_stmt_execute($answers_stmt);
 $answers_result = mysqli_stmt_get_result($answers_stmt);
 
+// Process new answer submission
 $answer_content = "";
 $answer_err = "";
 $success_msg = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_answer"])) {
     
+    // Validate answer content
     if(empty(trim($_POST["answer_content"]))) {
         $answer_err = "Please enter your answer.";
     } else {
         $answer_content = clean($conn, trim($_POST["answer_content"]));
     }
     
+    // If no errors, insert answer
     if(empty($answer_err)) {
         $insert_sql = "INSERT INTO answers (question_id, user_id, content) VALUES (?, ?, ?)";
         $insert_stmt = mysqli_prepare($conn, $insert_sql);
@@ -64,8 +74,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_answer"])) {
         
         if(mysqli_stmt_execute($insert_stmt)) {
             $success_msg = "Your answer has been posted successfully!";
-            $answer_content = "";
+            $answer_content = ""; // Clear the form
             
+            // Refresh the answers list
             mysqli_stmt_execute($answers_stmt);
             $answers_result = mysqli_stmt_get_result($answers_stmt);
         } else {
@@ -74,19 +85,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_answer"])) {
     }
 }
 
+// Process marking as best answer
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["mark_best_answer"])) {
     $answer_id = clean($conn, $_POST["answer_id"]);
     
+    // First reset all answers for this question
     $reset_sql = "UPDATE answers SET is_best_answer = 0 WHERE question_id = ?";
     $reset_stmt = mysqli_prepare($conn, $reset_sql);
     mysqli_stmt_bind_param($reset_stmt, "i", $question_id);
     mysqli_stmt_execute($reset_stmt);
     
+    // Then set the selected answer as best
     $best_sql = "UPDATE answers SET is_best_answer = 1 WHERE id = ? AND question_id = ?";
     $best_stmt = mysqli_prepare($conn, $best_sql);
     mysqli_stmt_bind_param($best_stmt, "ii", $answer_id, $question_id);
     
     if(mysqli_stmt_execute($best_stmt)) {
+        // Mark question as resolved
         $resolve_sql = "UPDATE questions SET is_resolved = 1 WHERE id = ?";
         $resolve_stmt = mysqli_prepare($conn, $resolve_sql);
         mysqli_stmt_bind_param($resolve_stmt, "i", $question_id);
@@ -95,17 +110,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["mark_best_answer"])) {
         $success_msg = "Answer marked as best! Question is now resolved.";
         $question['is_resolved'] = 1;
         
+        // Refresh the answers list
         mysqli_stmt_execute($answers_stmt);
         $answers_result = mysqli_stmt_get_result($answers_stmt);
     }
 }
 
+// Process reopening question
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reopen_question"])) {
+    // Reset all best answers
     $reset_sql = "UPDATE answers SET is_best_answer = 0 WHERE question_id = ?";
     $reset_stmt = mysqli_prepare($conn, $reset_sql);
     mysqli_stmt_bind_param($reset_stmt, "i", $question_id);
     mysqli_stmt_execute($reset_stmt);
     
+    // Mark question as unresolved
     $unresolve_sql = "UPDATE questions SET is_resolved = 0 WHERE id = ?";
     $unresolve_stmt = mysqli_prepare($conn, $unresolve_sql);
     mysqli_stmt_bind_param($unresolve_stmt, "i", $question_id);
@@ -114,11 +133,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reopen_question"])) {
         $success_msg = "Question has been reopened.";
         $question['is_resolved'] = 0;
         
+        // Refresh the answers list
         mysqli_stmt_execute($answers_stmt);
         $answers_result = mysqli_stmt_get_result($answers_stmt);
     }
 }
 
+// Get attachments for the question
 $attachments_sql = "SELECT * FROM attachments WHERE question_id = ?";
 $attachments_stmt = mysqli_prepare($conn, $attachments_sql);
 mysqli_stmt_bind_param($attachments_stmt, "i", $question_id);
@@ -131,104 +152,8 @@ $attachments_result = mysqli_stmt_get_result($attachments_stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($question['title']); ?> - Sage Forum</title>
     <link rel="stylesheet" href="../css/view_question.css">
-    <style>
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        
-        .modal-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            padding: 20px;
-        }
-        
-        .modal-image {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-        
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        
-        .close:hover {
-            color: #bbb;
-        }
-        
-        /* Attachment styles */
-        .attachment-link {
-            position: relative;
-            display: inline-block;
-            padding: 8px 15px 8px 32px;
-            background-color: #f0f9ff;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-        }
-        
-        .attachment-link:before {
-            content: "";
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%230ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l8.49-8.49a4 4 0 015.66 5.66l-7.78 7.78a2 2 0 01-2.83-2.83l6.37-6.37"></path></svg>');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-        }
-        
-        .attachment-link:hover {
-            background-color: #dbeafe;
-        }
-        
-        .image-attachment {
-            border: 2px solid #e0f2fe;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            max-width: 150px;
-            max-height: 150px;
-            display: inline-block;
-        }
-        
-        .image-attachment img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .image-attachment:hover img {
-            transform: scale(1.05);
-        }
-    </style>
 </head>
 <body>
     <div class="dashboard">
@@ -243,10 +168,10 @@ $attachments_result = mysqli_stmt_get_result($attachments_stmt);
                     <li><a href="forum.php" class="active">Q&A Forum</a></li>
                     <?php if($_SESSION["user_type"] == 'student') { ?>
                     <li><a href="tutors.php">Find Tutors</a></li>
-                    <li><a href="my_sessions.php">My Sessions</a></li>
+                    <li><a href="my_sessions.php">Sessions</a></li>
                     <?php } else { ?>
-                    <li><a href="my_students.php">My Students</a></li>
-                    <li><a href="schedule.php">My Schedule</a></li>
+                    <li><a href="my_students.php">Students</a></li>
+                    <li><a href="schedule.php">Schedule</a></li>
                     <?php } ?>
                     <li><a href="profile.php">Profile</a></li>
                 </ul>
@@ -297,22 +222,15 @@ $attachments_result = mysqli_stmt_get_result($attachments_stmt);
                 <?php if(mysqli_num_rows($attachments_result) > 0): ?>
                 <div class="question-attachments">
                     <h3>Attachments</h3>
-                    <div class="attachments-list">
-                        <?php while($attachment = mysqli_fetch_assoc($attachments_result)): 
-                            $file_extension = pathinfo($attachment['file_name'], PATHINFO_EXTENSION);
-                            $is_image = in_array(strtolower($file_extension), ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg']);
-                        ?>
-                            <?php if($is_image): ?>
-                                <div class="image-attachment" onclick="openModal('<?php echo htmlspecialchars($attachment['file_path']); ?>')">
-                                    <img src="<?php echo htmlspecialchars($attachment['file_path']); ?>" alt="<?php echo htmlspecialchars($attachment['file_name']); ?>">
-                                </div>
-                            <?php else: ?>
-                                <a href="<?php echo htmlspecialchars($attachment['file_path']); ?>" target="_blank" class="attachment-link" download>
+                    <ul class="attachments-list">
+                        <?php while($attachment = mysqli_fetch_assoc($attachments_result)): ?>
+                            <li>
+                                <a href="<?php echo htmlspecialchars($attachment['file_path']); ?>" target="_blank" class="attachment-link">
                                     <?php echo htmlspecialchars($attachment['file_name']); ?>
                                 </a>
-                            <?php endif; ?>
+                            </li>
                         <?php endwhile; ?>
-                    </div>
+                    </ul>
                 </div>
                 <?php endif; ?>
                 
@@ -395,35 +313,6 @@ $attachments_result = mysqli_stmt_get_result($attachments_stmt);
             </div>
         </main>
     </div>
-    
-    <!-- Modal for image preview -->
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" class="modal-image" src="" alt="Enlarged attachment">
-        </div>
-    </div>
-    
-    <script>
-        function openModal(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = "block";
-            modalImg.src = imageSrc;
-        }
-        
-        function closeModal() {
-            document.getElementById('imageModal').style.display = "none";
-        }
-        
-        // Close modal when clicking outside the image
-        window.onclick = function(event) {
-            const modal = document.getElementById('imageModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
     <script src="../js/main.js"></script>
 </body>
 </html>

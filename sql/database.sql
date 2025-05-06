@@ -64,4 +64,15 @@ CREATE TABLE IF NOT EXISTS tutoring_sessions (
     FOREIGN KEY (tutor_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS tutor_availability (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    tutor_id INT(11) NOT NULL,
+    day_of_week ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tutor_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
  

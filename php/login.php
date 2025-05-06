@@ -123,7 +123,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
-                <p class="register-link">Don't have an account? <a href="register.php">Register Now</a></p>
+                <p class="register-link">Don't have an account? <a href="register.php">Register Here</a></p>
             </form>
         </div>
     </div>
