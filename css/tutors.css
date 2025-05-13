@@ -208,28 +208,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--gray);
 }
 
-.filter-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  align-items: center;
-}
-
-.filter-select {
-  padding: 10px 15px;
-  border: 1px solid var(--gray-light);
-  border-radius: 5px;
-  font-size: 0.9rem;
-  min-width: 200px;
-  transition: all 0.3s;
-}
-
-.filter-select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
-}
-
 .btn {
   display: inline-block;
   font-weight: 500;

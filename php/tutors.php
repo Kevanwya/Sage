@@ -18,25 +18,11 @@ if($_SESSION["user_type"] !== "student") {
 require_once "config.php";
 
 // Define variables
-$subjects = [];
 $tutors = [];
-$selectedSubject = "";
 $search = "";
 
-// Get all subjects from questions table for filter dropdown
-$subject_sql = "SELECT DISTINCT subject FROM questions ORDER BY subject";
-$subject_result = mysqli_query($conn, $subject_sql);
-
-while($row = mysqli_fetch_assoc($subject_result)) {
-    $subjects[] = $row['subject'];
-}
-
-// Process search and filter
+// Process search
 if($_SERVER["REQUEST_METHOD"] == "GET") {
-    if(isset($_GET['subject']) && !empty($_GET['subject'])) {
-        $selectedSubject = clean($conn, $_GET['subject']);
-    }
-    
     if(isset($_GET['search']) && !empty($_GET['search'])) {
         $search = clean($conn, $_GET['search']);
     }
@@ -48,7 +34,7 @@ $sql = "SELECT u.id, u.username, u.full_name, COUNT(a.id) as answer_count
         LEFT JOIN answers a ON u.id = a.user_id 
         WHERE u.user_type = 'tutor'";
 
-// Add search and filter conditions
+// Add search condition
 $params = [];
 $types = "";
 
@@ -57,16 +43,6 @@ if(!empty($search)) {
     $params[] = "%$search%";
     $params[] = "%$search%";
     $types .= "ss";
-}
-
-if(!empty($selectedSubject)) {
-    $sql .= " AND EXISTS (
-                SELECT 1 FROM answers a2 
-                JOIN questions q ON a2.question_id = q.id 
-                WHERE a2.user_id = u.id AND q.subject = ?
-              )";
-    $params[] = $selectedSubject;
-    $types .= "s";
 }
 
 // Group by and order
@@ -91,7 +67,7 @@ while($row = mysqli_fetch_assoc($result)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Tutors - Sage</title>
+    <title>Tutors</title>
     <link rel="stylesheet" href="../css/tutors.css">
 </head>
 <body>
@@ -130,23 +106,12 @@ while($row = mysqli_fetch_assoc($result)) {
                             <input type="text" name="search" placeholder="Search tutors..." value="<?php echo htmlspecialchars($search); ?>">
                             <button type="submit" class="search-btn">🔍</button>
                         </div>
-                        
-                        <div class="filter-section">
-                            <select name="subject" class="filter-select">
-                                <option value="">All Subjects</option>
-                                <?php foreach($subjects as $subject): ?>
-                                    <option value="<?php echo htmlspecialchars($subject); ?>" <?php if($selectedSubject === $subject) echo "selected"; ?>>
-                                        <?php echo htmlspecialchars($subject); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            
-                            <button type="submit" class="btn btn-filter">Filter</button>
-                            
-                            <?php if(!empty($search) || !empty($selectedSubject)): ?>
+
+                        <?php if(!empty($search)): ?>
+                            <div class="filter-section">
                                 <a href="tutors.php" class="btn btn-clear">Clear</a>
-                            <?php endif; ?>
-                        </div>
+                            </div>
+                        <?php endif; ?>
                     </form>
                 </div>
                 
@@ -180,4 +145,5 @@ while($row = mysqli_fetch_assoc($result)) {
     <script src="../js/main.js"></script>
 </body>
 </html>
+
  

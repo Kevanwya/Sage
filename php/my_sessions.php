@@ -79,7 +79,7 @@ while($row = mysqli_fetch_assoc($result)) {
         
         <main class="main-content">
             <header class="content-header">
-                <h1>My Tutoring Sessions</h1>
+                <h1>Tutoring Sessions</h1>
                 <div class="header-actions">
                     <span class="user-type"><?php echo ucfirst($_SESSION["user_type"]); ?></span>
                 </div>
