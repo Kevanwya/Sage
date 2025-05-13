@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $page_title; ?> - Sage</title>
+    <title>Session Details</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <style>
         .session-details-container {
@@ -256,7 +256,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
                     <div>
                         <h2 class="session-title"><?php echo htmlspecialchars($session['subject']); ?></h2>
                         <p class="session-meta">
-                            Session ID: <?php echo $session['id']; ?> | 
                             Created: <?php echo date('M j, Y', strtotime($session['created_at'])); ?>
                         </p>
                     </div>

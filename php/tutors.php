@@ -104,7 +104,6 @@ while($row = mysqli_fetch_assoc($result)) {
                     <form method="GET" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="search-form">
                         <div class="search-input">
                             <input type="text" name="search" placeholder="Search tutors..." value="<?php echo htmlspecialchars($search); ?>">
-                            <button type="submit" class="search-btn">🔍</button>
                         </div>
 
                         <?php if(!empty($search)): ?>

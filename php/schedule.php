@@ -74,7 +74,7 @@ while($row = mysqli_fetch_assoc($availability_result)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Schedule</title>
+    <title>Schedule</title>
     <link rel="stylesheet" href="../css/schedule.css">
 </head>
 <body>
@@ -101,7 +101,7 @@ while($row = mysqli_fetch_assoc($availability_result)) {
         
         <main class="main-content">
             <header class="content-header">
-                <h1>My Schedule</h1>
+                <h1>Schedule</h1>
                 <div class="header-actions">
                     <span class="user-type"><?php echo ucfirst($_SESSION["user_type"]); ?></span>
                     <a href="availability.php" class="btn btn-primary">Set Availability</a>

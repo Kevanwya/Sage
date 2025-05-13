@@ -146,7 +146,6 @@ $subject_result = mysqli_query($conn, $subject_sql);
                     <form class="search-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
                         <div class="search-input">
                             <input type="text" name="search" placeholder="Search questions..." value="<?php echo htmlspecialchars($search_query); ?>">
-                            <button type="submit" class="search-btn">🔍</button>
                         </div>
                         
                         <div class="filter-options">

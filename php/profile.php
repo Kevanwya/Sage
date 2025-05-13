@@ -195,7 +195,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["change_password"])) {
         
         <main class="main-content">
             <header class="content-header">
-                <h1>My Profile</h1>
+                <h1>Profile</h1>
                 <div class="header-actions">
                     <span class="user-type"><?php echo ucfirst($_SESSION["user_type"]); ?></span>
                 </div>
