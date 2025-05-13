@@ -2,7 +2,10 @@ Index.html - main page:
 
 Home - Login - Register
 
-Highlighted Features, How it works, What Our Users Say
+Sections:
+Features
+How it works
+What Our Users Say
 
 Footer:
 
