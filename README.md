@@ -37,7 +37,6 @@ create_folder.php
 dashboard.php
 edit_question.php
 forum.php
-install.php
 login.php
 logout.php
 my_answers.php
