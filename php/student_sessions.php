@@ -75,7 +75,7 @@ $stats = mysqli_fetch_assoc($stats_result);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sessions with <?php echo htmlspecialchars($student['full_name']); ?> - Sage</title>
+    <title>Sessions with <?php echo htmlspecialchars($student['full_name']); ?></title>
     <link rel="stylesheet" href="../css/student_sessions.css">
 </head>
 <body>
