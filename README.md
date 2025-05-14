@@ -2,7 +2,10 @@ Index.html - main page:
 
 Home - Login - Register
 
-Highlighted Features, How it works, What Our Users Say
+Sections:
+Features
+How it works
+What Our Users Say
 
 Footer:
 
@@ -52,24 +55,23 @@ view_session.php
 
 CSS Folder:
 
-ask_question.css  
-availability.css  
-config.css  
-dashboard.css  
-edit_question.css  
-forum.css
-login.css  
-logout.css  
-my_answers.css  
-my_questions.css  
-my_sessions.css  
-my_students.css  
-profile.css  
-register.css  
-schedule_session.css  
-schedule.css  
-student_sessions.css  
-tutors.css  
-view_question.css  
-view_session.css  
+ask_question.css - CSS file for ask_question.php  
+availability.css - CSS file for availability.php 
+dashboard.css - CSS file for dashboard.php  
+edit_question.css - CSS file for edit_question.php  
+forum.css - CSS file for forum.php  
+login.css - CSS file for login.php  
+logout.css - CSS file for logout.php  
+my_answers.css - CSS file for my_answers.php  
+my_questions.css - CSS file for my_questions.php  
+my_sessions.css - CSS file for my_sessions.php  
+my_students.css - CSS file for my_students.php  
+profile.css - CSS file for profile.php  
+register.css - CSS file for register.php  
+schedule_session.css - CSS file for schedule_session.php  
+schedule.css - CSS file for schedule.php  
+student_sessions.css - CSS file for student_sessions.php  
+tutors.css - CSS file for tutors.php  
+view_question.css - CSS file for view_question.php  
+view_session.css - CSS file for view_session.php  
 index.css - CSS file for index.html
