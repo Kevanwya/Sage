@@ -24,33 +24,64 @@ images folder:
 header1, header2
 
 js folder:
-main.js
+main.js - Handles the functionality of the website
 
 sql folder:
 database.sql - MySQL code
 
 PHP Folder:
-ask_question.php
-availability.php
-config.php
-create_folder.php
-dashboard.php
-edit_question.php
-forum.php
-login.php
-logout.php
-my_answers.php
-my_questions.php
-my_sessions.php
-my_students.php
-profile.php
-register.php
-schedule_session.php
-schedule.php
-student_sessions.php
-tutors.php
-view_question.php
-view_session.php
+
+ask_question.php - Allows users (Student/Tutor) to ask questions/attach files.
+
+availability.php - This for tutors. It's page that allows them to manage their availability for sessions with students.
+
+config.php - Handles all logic for this website
+
+create_folder.php - This handles the file attachment feature and saves that information in the database
+
+dashboard.php - Allow both users to view various pages and features. It varies depending on the user type. So if you're logged in as a student, the pages in the side bar maybe different as to if you're logged in as a tutor.
+
+edit_question.php - Allows both users to edit a posted question.
+
+forum.php - Allows users to post questions and view all questions asked by different users.
+
+login.php - Allows users to log in. Redirects you to a login form if you intentionally logged out.
+
+logout.php - Allows users to log out 
+
+my_answers.php - As a tutor, you can view all answers you posted.
+
+my_questions.php - As a student, you can view all questions you posted.
+
+my_sessions.php - As a student, you can view all sessions you have with tutors.
+
+my_students.php - As a tutor, you can view all your student you've tutored.
+
+profile.php - A profile page that shows the information for both student and tutor with some locked options.
+
+register.php - Allows users to register. Redirects you to a signup page.
+
+schedule_session.php - As a student, you can book a session with a tutor.
+
+schedule.php - Both users can view their sessions. If you're a tutor, you can also see your current availabilty. 
+
+student_sessions.php - As a tutor, you can view the full session of a specific student if you would like. 
+
+This includes:
+
+Session History with that student
+Student Details (Email, when they first joined the site)
+Total Sessions - Number count of the total sessions with that student
+Completed - Number count of how many sessions you marked as completed
+Upcoming - Number count of how many upcoming sessions for that student
+Cancelled - Number count of how many upcoming sessions for that student
+First Session - The date of when the student had their first session with you (eg.June 2025)
+
+tutors.php - If you're logged in as a student, you can view all tutors.
+
+view_question.php - Both users can view their questions. 
+
+view_session.php - Both users can view their tutoring session details.
 
 CSS Folder:
 
